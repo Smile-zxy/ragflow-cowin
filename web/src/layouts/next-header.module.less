@@ -1,0 +1,23 @@
+
+.headerWrapper {
+  width: 140px; /* Width */
+  background-color: #ffffff; /* Background color */
+}
+
+.segmentedWrapper {
+  width: 100%;
+  background-color: transparent;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; 
+  font-size: 10px;
+  
+  :global {
+    .ant-segmented-item {
+      margin-bottom: 16px;
+    }
+    .ant-segmented-item-label {
+      font-size: 16px;
+    }
+  }
+}
