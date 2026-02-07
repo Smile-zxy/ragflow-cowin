@@ -61,17 +61,17 @@ export function Header() {
   }));
 
   const onThemeClick = React.useCallback(() => {
-    setTheme(theme === ThemeEnum.Dark ? ThemeEnum.Light : ThemeEnum.Dark);
+    setTheme(theme === ThemeEnum.Dark ? ThemeEnum.Light : ThemeEnum.Dark);      
   }, [setTheme, theme]);
 
   const tagsData = useMemo(
     () => [
       { path: Routes.Root, name: t('header.Root'), icon: House },
-      { path: Routes.Datasets, name: t('header.dataset'), icon: Library },
-      { path: Routes.Chats, name: t('header.chat'), icon: MessageSquareText },
-      { path: Routes.Searches, name: t('header.search'), icon: Search },
+      { path: Routes.Datasets, name: t('header.dataset'), icon: Library },      
+      { path: Routes.Chats, name: t('header.chat'), icon: MessageSquareText },  
+      { path: Routes.Searches, name: t('header.search'), icon: Search },        
       { path: Routes.Agents, name: t('header.flow'), icon: Cpu },
-      { path: Routes.Files, name: t('header.fileManager'), icon: File },
+      { path: Routes.Files, name: t('header.fileManager'), icon: File },        
     ],
     [t],
   );
@@ -85,7 +85,10 @@ export function Header() {
           tag.path === Routes.Root ? (
             <HeaderIcon className="size-6"></HeaderIcon>
           ) : (
-            <span>{tag.name}</span>
+            <div className="flex items-center gap-2">
+              <HeaderIcon className="size-4" />
+              <span>{tag.name}</span>
+            </div>
           ),
         value: tag.path,
       };
@@ -104,27 +107,28 @@ export function Header() {
       <section className={`py-5 flex flex-col justify-between items-center h-full border-r bg-background ${styles.headerWrapper}`}>
         <div className="flex flex-col items-center gap-4">
           <img
-            src={'/logo.svg'}
+            src={'/logo.png'}
             alt="logo"
-            className="size-10 cursor-pointer"
+            className="size-13 cursor-pointer"
             onClick={handleLogoClick}
           />
-          <a
+          {/* <a
             className="flex items-center gap-1.5 text-text-secondary"
             target="_blank"
             href="https://github.com/infiniflow/ragflow"
             rel="noreferrer"
           >
             <Github className="size-4" />
-          </a>
+          </a> */}
         </div>
         <Segmented
           className={`flex-col h-auto ${styles.segmentedWrapper}`}
+          activeClassName={styles.activeItem}
           options={options}
           value={pathname}
           onChange={handleChange}
         ></Segmented>
-        <div className="flex flex-col items-center gap-1 text-text-badge">
+        <div className="flex flex-col items-center gap-1 text-text-badge">      
           <DropdownMenu>
             <DropdownMenuTrigger>
               <div className="flex items-center gap-5">
@@ -134,19 +138,22 @@ export function Header() {
             </DropdownMenuTrigger>
             <DropdownMenuContent>
               {items.map((x) => (
-                <DropdownMenuItem key={x.key} onClick={handleItemClick(x.key)}>
+                <DropdownMenuItem key={x.key} onClick={handleItemClick(x.key)}> 
                   {x.label}
                 </DropdownMenuItem>
               ))}
             </DropdownMenuContent>
           </DropdownMenu>
-          <Button variant={'ghost'} onClick={handleDocHelpCLick}>
+          {/* 指引按钮 */}
+          {/* <Button variant={'ghost'} onClick={handleDocHelpCLick}>
             <CircleHelp />
-          </Button>
-          <Button variant={'ghost'} onClick={onThemeClick}>
+          </Button> */}
+
+          {/* 主题切换按钮 */}
+          {/* <Button variant={'ghost'} onClick={onThemeClick}>
             {theme === 'light' ? <Sun /> : <Moon />}
           </Button>
-          <BellButton></BellButton>
+          <BellButton></BellButton> */}
           <div className="relative">
             <RAGFlowAvatar
               name={nickname}

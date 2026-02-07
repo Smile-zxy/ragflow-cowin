@@ -1,6 +1,5 @@
-
 .headerWrapper {
-  width: 140px; /* Width */
+  width: 150px; /* Width */
   background-color: #ffffff; /* Background color */
 }
 
@@ -9,9 +8,13 @@
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  gap: 20px; 
-  font-size: 10px;
-  
+  gap: 30px;
+  font-size: 20px;
+
+  .activeItem {
+    background-color: #e6f4ff !important;
+  }
+
   :global {
     .ant-segmented-item {
       margin-bottom: 16px;

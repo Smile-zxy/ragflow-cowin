@@ -50,7 +50,7 @@ export function Applications() {
       { value: Routes.Chats, label: t('chat.chatApps') },
       { value: Routes.Searches, label: t('search.searchApps') },
       { value: Routes.Agents, label: t('header.flow') },
-      { value: Routes.Memories, label: t('memories.memory') },
+      // { value: Routes.Memories, label: t('memories.memory') },
     ],
     [t],
   );
