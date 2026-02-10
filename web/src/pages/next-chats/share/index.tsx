@@ -1,4 +1,6 @@
 import { EmbedContainer } from '@/components/embed-container';
+import styles from './index.module.less';
+import { useNavigate } from 'react-router';
 import { NextMessageInput } from '@/components/message-input/next';
 import MessageItem from '@/components/message-item';
 import PdfSheet from '@/components/pdf-drawer';
@@ -20,7 +22,11 @@ import {
 } from '../hooks/use-send-shared-message';
 import { buildMessageItemReference } from '../utils';
 
+
+
+
 const ChatContainer = () => {
+  const navigate = useNavigate();
   const {
     sharedId: conversationId,
     from,
@@ -45,7 +51,7 @@ const ChatContainer = () => {
     removeAllMessagesExceptFirst,
   } = useSendSharedMessage();
   const sendDisabled = useSendButtonDisabled(value);
-  const { data: chatInfo } = useFetchExternalChatInfo();
+  const { data: chatInfoData } = useFetchExternalChatInfo();
 
   const useFetchAvatar = useMemo(() => {
     return from === SharedFrom.Agent
@@ -60,6 +66,16 @@ const ChatContainer = () => {
 
   const { data: avatarData } = useFetchAvatar();
 
+  const chatInfo = useMemo(() => {
+    return from === SharedFrom.Agent
+      ? {
+          title: (avatarData as any)?.title,
+          avatar: (avatarData as any)?.avatar,
+          has_tavily_key: false,
+        }
+      : chatInfoData;
+  }, [from, avatarData, chatInfoData]);
+
   if (!conversationId) {
     return <div>empty</div>;
   }
@@ -67,6 +83,8 @@ const ChatContainer = () => {
   return (
     <>
       <EmbedContainer
+        className={styles.shareContainer}
+        onBack={() => navigate('/agents')}
         title={chatInfo.title}
         avatar={chatInfo.avatar}
         handleReset={removeAllMessagesExceptFirst}
@@ -143,3 +161,5 @@ const ChatContainer = () => {
 };
 
 export default forwardRef(ChatContainer);
+
+

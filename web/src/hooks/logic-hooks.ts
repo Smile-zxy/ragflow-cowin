@@ -212,7 +212,7 @@ export const useSendMessageWithSse = (
   const sseRef = useRef<AbortController>();
 
   const initializeSseRef = useCallback(() => {
-    sseRef.current = new AbortController();
+    if (sseRef.current) { sseRef.current.abort(); } sseRef.current = new AbortController();
   }, []);
 
   const resetAnswer = useCallback(() => {
@@ -276,13 +276,18 @@ export const useSendMessageWithSse = (
                 if (typeof d !== 'boolean') {
                   setAnswer((prev) => {
                     const prevAnswer = prev.answer || '';
-                    const currentAnswer = d.answer || '';
-
                     let newAnswer: string;
-                    if (prevAnswer && currentAnswer.startsWith(prevAnswer)) {
-                      newAnswer = currentAnswer;
+                    if (d.answer) {
+                      const currentAnswer = d.answer || '';
+                      if (prevAnswer && currentAnswer.startsWith(prevAnswer)) {
+                        newAnswer = currentAnswer;
+                      } else {
+                        newAnswer = prevAnswer + currentAnswer;
+                      }
+                    } else if (d.content) {
+                      newAnswer = prevAnswer + d.content;
                     } else {
-                      newAnswer = prevAnswer + currentAnswer;
+                      newAnswer = prevAnswer;
                     }
 
                     if (d.start_to_think === true) {

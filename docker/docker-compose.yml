@@ -43,11 +43,17 @@ services:
       - ./entrypoint.sh:/ragflow/entrypoint.sh
 
       # # cpu版本挂载
-      # - ../api:/ragflow/api
-      # - ../rag:/ragflow/rag
-      # - ../deepdoc:/ragflow/deepdoc
-      # - ../agent:/ragflow/agent
-      # - ../common:/ragflow/common
+      - ../api:/ragflow/api
+      - ../rag:/ragflow/rag
+      - ../deepdoc:/ragflow/deepdoc
+      - ../agent:/ragflow/agent
+      - ../common:/ragflow/common
+      - ../memory:/ragflow/memory
+      - ../conf:/ragflow/conf
+      - ../admin:/ragflow/admin            # 支持 Admin Server
+      - ../mcp:/ragflow/mcp                # 支持 MCP Server
+      - ../intergrations:/ragflow/intergrations  # 支持外部集成  
+
     env_file: .env
     networks:
       - ragflow

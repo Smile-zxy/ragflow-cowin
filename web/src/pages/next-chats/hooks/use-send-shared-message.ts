@@ -109,9 +109,7 @@ export const useSendSharedMessage = () => {
     }
   }, [send]);
 
-  useEffect(() => {
-    fetchSessionId();
-  }, [fetchSessionId]);
+  useEffect(() => { if (from !== SharedFrom.Agent) { fetchSessionId(); } }, [fetchSessionId, from]);
 
   useEffect(() => {
     if (answer.answer) {

@@ -1,0 +1,72 @@
+.shareContainer {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  position: relative;
+  overflow: hidden;
+
+  // Add a subtle decorative circle
+  &::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    right: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(59, 130, 246, 0.05) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+  }
+
+  // Target the inner container (the one with border class in EmbedContainer)
+  :global {
+    .border.rounded-lg {
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.05) !important; // Override default border
+      box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1); // Soft shadow
+      border-radius: 16px; // More rounded
+      position: relative;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    // Header section
+    .border-b {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
+      padding: 16px 20px !important;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(8px);
+    }
+
+    // Avatar and Title
+    .text-xl {
+      font-weight: 600;
+      color: #1a1a1a; // Black text
+    }
+
+    // Reset Button
+    button.bg-secondary {
+      background-color: #f3f4f6;
+      color: #4b5563; // Gray text
+      border: none;
+      transition: all 0.2s ease;
+      
+      &:hover {
+        background-color: #e5e7eb;
+        color: #111827; // Darker on hover
+      }
+    }
+
+    // Message input area
+    .bg-bg-card {
+      background-color: #ffffff;
+    }
+  }
+}
+
+// Custom styles for specific elements if needed
+.primaryButton {
+  background-color: #3b82f6; // Blue
+  color: white;
+  &:hover {
+    background-color: #2563eb;
+  }
+}

@@ -1,4 +1,4 @@
-import EmbedDialog from '@/components/embed-dialog';
+﻿import EmbedDialog from '@/components/embed-dialog';
 import { useShowEmbedModal } from '@/components/embed-dialog/use-show-embed-dialog';
 import { PageHeader } from '@/components/page-header';
 import {
@@ -149,6 +149,10 @@ export default function Agent() {
             <History />
             {t('flow.historyVersion')}
           </Button>
+          <Button variant={'secondary'} onClick={handleClientServiceIntegration}>
+            <Headset />
+            {t('flow.clientServiceIntegration')}
+          </Button>
           <Button
             variant={'secondary'}
             onClick={navigateToAgentLogs(id as string)}
@@ -164,11 +168,7 @@ export default function Agent() {
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent>
-              <AgentDropdownMenuItem onClick={handleClientServiceIntegration}>
-                <Headset />
-                {t('flow.clientServiceIntegration')}
-              </AgentDropdownMenuItem>
-              <DropdownMenuSeparator />
+
               <AgentDropdownMenuItem onClick={handleExportJson}>
                 <Upload />
                 {t('flow.export')}

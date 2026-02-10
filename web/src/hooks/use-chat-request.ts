@@ -1,6 +1,6 @@
-import { FileUploadProps } from '@/components/file-upload';
+﻿import { FileUploadProps } from '@/components/file-upload';
 import message from '@/components/ui/message';
-import { ChatSearchParams } from '@/constants/chat';
+import { ChatSearchParams, SharedFrom } from '@/constants/chat';
 import {
   IClientConversation,
   IConversation,
@@ -433,7 +433,7 @@ export function useUploadAndParseFile() {
 }
 
 export const useFetchExternalChatInfo = () => {
-  const { sharedId: id } = useGetSharedChatSearchParams();
+  const { sharedId: id, from } = useGetSharedChatSearchParams();
 
   const {
     data,
@@ -443,7 +443,7 @@ export const useFetchExternalChatInfo = () => {
     queryKey: [ChatApiAction.FetchExternalChatInfo, id],
     gcTime: 0,
     initialData: {} as IExternalChatInfo,
-    enabled: !!id,
+    enabled: !!id && from !== SharedFrom.Agent,
     refetchOnWindowFocus: false,
     queryFn: async () => {
       const { data } = await chatService.fetchExternalChatInfo(id!);

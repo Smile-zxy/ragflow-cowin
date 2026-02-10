@@ -2,6 +2,25 @@
 
 set -e
 
+# [新增] 离线安装依赖
+# 检查挂载目录是否存在离线包，如果存在则安装
+if [ -d "/ragflow/api/packages" ]; then
+    echo "Installing offline packages from /ragflow/api/packages..."
+    if ls /ragflow/api/packages/*.whl 1> /dev/null 2>&1; then
+        # RAGFlow 镜像内置了 uv，优先使用 uv 进行安装，它能自动识别 .venv 环境
+        if command -v uv >/dev/null 2>&1; then
+            echo "Using uv to install packages..."
+            # 使用 uv pip install 安装所有 whl 包
+            uv pip install --no-cache /ragflow/api/packages/*.whl
+        else
+            # 如果找不到 uv (极少情况)，尝试使用 python pip 作为后备
+            echo "uv not found, trying python pip..."
+            python3 -m pip install --no-cache-dir /ragflow/api/packages/*.whl
+        fi
+    else
+        echo "Warning: No .whl files found in /ragflow/api/packages"
+    fi
+fi
 # -----------------------------------------------------------------------------
 # Usage and command-line argument parsing
 # -----------------------------------------------------------------------------
