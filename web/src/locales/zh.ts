@@ -1,6 +1,7 @@
 export default {
   translation: {
     common: {
+      seeAll: '查看所有',
       confirm: '确定',
       back: '返回',
       noResults: '未查到结果',

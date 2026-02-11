@@ -1,6 +1,5 @@
 .headerWrapper {
   width: 150px; /* Width */
-  background-color: #ffffff; /* Background color */
 }
 
 .segmentedWrapper {
@@ -8,7 +7,7 @@
   background-color: transparent;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 40px;
   font-size: 20px;
 
   .activeItem {
@@ -22,5 +21,12 @@
     .ant-segmented-item-label {
       font-size: 16px;
     }
+  }
+}
+
+:global(.dark) {
+  .activeItem {
+    background-color: hsl(var(--sidebar-accent)) !important;
+    color: hsl(var(--sidebar-accent-foreground)) !important;
   }
 }

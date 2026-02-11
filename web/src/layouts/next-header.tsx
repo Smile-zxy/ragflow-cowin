@@ -150,10 +150,10 @@ export function Header() {
           </Button> */}
 
           {/* 主题切换按钮 */}
-          {/* <Button variant={'ghost'} onClick={onThemeClick}>
+          <Button variant={'ghost'} onClick={onThemeClick}>
             {theme === 'light' ? <Sun /> : <Moon />}
           </Button>
-          <BellButton></BellButton> */}
+          <BellButton></BellButton>
           <div className="relative">
             <RAGFlowAvatar
               name={nickname}

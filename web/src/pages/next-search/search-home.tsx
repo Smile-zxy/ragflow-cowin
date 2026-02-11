@@ -33,10 +33,11 @@ export default function SearchPage({
             'text-4xl font-bold bg-gradient-to-l from-[#40EBE3] to-[#4A51FF] bg-clip-text',
           )}
         >
-          RAGFlow
+          
+          CowinAI
         </h1>
 
-        <div className="rounded-lg  text-primary text-xl sticky flex justify-center w-full transform scale-100 mt-8 p-6 h-[240px] border">
+        <div className="rounded-3xl  text-primary text-xl sticky flex justify-center w-full transform scale-100 mt-8 p-6 h-[240px] border">
           {!isSearching && <Spotlight className="z-0" />}
           <div className="flex flex-col justify-center items-center  w-2/3">
             {!isSearching && (
