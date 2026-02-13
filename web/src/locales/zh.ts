@@ -1308,7 +1308,7 @@ General：实体和关系提取提示来自 GitHub - microsoft/graphrag：基于
       },
       cite: '引用',
       citeTip: '引用',
-      clientServiceIntegration: '客服集成',
+      clientServiceIntegration: '用户集成',
       nameMessage: '请输入名称',
       description: '描述',
       examples: '示例',

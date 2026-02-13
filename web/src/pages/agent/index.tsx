@@ -21,6 +21,7 @@ import { SharedFrom } from '@/constants/chat';
 import { useSetModalState } from '@/hooks/common-hooks';
 import { useNavigatePage } from '@/hooks/logic-hooks/navigate-hooks';
 import { Routes } from '@/routes';
+import authorizationUtil from '@/utils/authorization-util';
 import { ReactFlowProvider } from '@xyflow/react';
 import {
   ChevronDown,
@@ -106,7 +107,7 @@ export default function Agent() {
     (e: any) => {
       e.stopPropagation();
       navigate(
-        `${Routes.ChatShare}?shared_id=${id}&from=${SharedFrom.Agent}`,
+        `${Routes.AgentShare}?shared_id=${id}&from=${SharedFrom.Agent}&auth=${authorizationUtil.getToken()}&theme=light`,
       );
     },
     [id, navigate],

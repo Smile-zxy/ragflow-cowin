@@ -1,4 +1,4 @@
-import { EmbedContainer } from '@/components/embed-container';
+﻿import { EmbedContainer } from '@/components/embed-container';
 import { FileUploadProps } from '@/components/file-upload';
 import { NextMessageInput } from '@/components/message-input/next';
 import MessageItem from '@/components/next-message-item';
@@ -14,6 +14,8 @@ import { useCacheChatLog } from '@/pages/agent/hooks/use-cache-chat-log';
 import { useAwaitCompentData } from '@/pages/agent/hooks/use-chat-logic';
 import { buildMessageUuidWithRole } from '@/utils/chat';
 import { isEmpty } from 'lodash';
+import { ArrowLeft } from 'lucide-react';
+import { useNavigate } from 'react-router';
 import React, { forwardRef, useCallback } from 'react';
 import {
   useGetSharedChatSearchParams,
@@ -28,7 +30,13 @@ const ChatContainer = () => {
     locale,
     theme,
     visibleAvatar,
+    sharedId,
   } = useGetSharedChatSearchParams();
+  const navigate = useNavigate();
+
+  const handleBack = useCallback(() => {
+    navigate(/agent/);
+  }, [navigate, sharedId]);
   useSyncThemeFromParams(theme);
   const { visible, hideModal, documentId, selectedChunk, clickDocumentButton } =
     useClickDrawer();

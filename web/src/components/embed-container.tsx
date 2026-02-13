@@ -35,7 +35,7 @@ export function EmbedContainer({
         )}
         <div className="flex flex-col gap-2 items-start ">             
           <img src="/logo.png" alt="" className="h-12 w-25 ml-3 mt-2" />
-          <span className="text-2xl font-bold ml-2">{t('flow.clientServiceIntegration')}</span> 
+          {/* <span className="text-2xl font-bold ml-2">{t('flow.clientServiceIntegration')}</span>  */}
         </div>
       </div>
       <div className=" w-[80vw] border rounded-lg">
